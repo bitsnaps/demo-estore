@@ -1,0 +1,21 @@
+model {
+    Product product
+}
+
+//json g.render(product, [excludes: ['category']])
+
+//json g.render(product, [excludes: ['price']])
+
+json g.render(product, [deep: true])
+
+//json g.render(product, [expand: ['category'], excludes: ['category.id']])
+
+/*json g.render(product, [excludes: ['category']]){
+    catalog product.category.name
+}*/
+
+/*json g.render(product, [excludes: ['category']]){
+    category {
+     name product.category.name
+    }
+}*/

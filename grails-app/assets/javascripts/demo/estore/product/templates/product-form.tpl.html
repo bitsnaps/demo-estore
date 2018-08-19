@@ -1,0 +1,19 @@
+<form action="#">
+
+    <div class="col-sm-6">
+        <input type="text" class="form-control" placeholder="Name" ng-model="product.name">
+        <input type="text" class="form-control" placeholder="Description" ng-model="product.description">
+    </div>
+    <div class="col-sm-6">
+        <input type="text" class="form-control" placeholder="Brand" ng-model="product.brand">
+        <input type="text" class="form-control" placeholder="Category" ng-model="product.category.name">
+
+        <input type="number" class="form-control" placeholder="Price" ng-model="product.price">
+
+        <div class="pull-right">
+            <small ng-show="dateUpdated && product">Last update: {{dateUpdated}}</small>
+            <input type="button" class="btn btn-success" ng-click="save(product, dateUpdated)" value="Save" ng-disabled="!product" />
+            <input type="reset" class="btn btn-info" ng-click="reset()" value="Reset" ng-show="product" />
+        </div>
+    </div>
+</form>

@@ -1,0 +1,94 @@
+<section class="row colset-2-its" ng-controller="ProductController as productCtrl">
+    <div ng-cloak>
+
+
+        <h2>{{ productCtrl.pName }} {{ productCtrl.products.length }} product(s)</h2>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <product-form
+                        product="productCtrl.product"
+                        save="productCtrl.save(productCtrl.product)"
+                        reset="productCtrl.reset()"></product-form>
+
+                <!-- moved to directive 'product-form' -->
+                <!--<form action="#">-->
+                    <!--<div class="col-sm-6">-->
+                        <!--<input type="text" class="form-control" placeholder="Name" ng-model="productCtrl.product.name">-->
+                        <!--<input type="text" class="form-control" placeholder="Description" ng-model="productCtrl.product.description">-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-6">-->
+                        <!--<input type="text" class="form-control" placeholder="Brand" ng-model="productCtrl.product.brand">-->
+                        <!--<input type="text" class="form-control" placeholder="Category" ng-model="productCtrl.product.category">-->
+
+                        <!--<input type="number" class="form-control" placeholder="Price" ng-model="productCtrl.product.price">-->
+
+                        <!--<div class="pull-right">-->
+                            <!--<input type="button" class="btn btn-success" ng-click="productCtrl.save(productCtrl.product)" value="Save" ng-disabled="!productCtrl.product" />-->
+                            <!--<input type="reset" class="btn btn-info" ng-click="productCtrl.reset()" value="Reset" ng-show="productCtrl.product" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</form>-->
+            </div><!-- col-md-12 -->
+
+            <div class="col-md-12" ng-show="productCtrl.errors">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p ng-repeat="error in productCtrl.errors">{{ error.message }} </p>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-8 pull-left">
+                <input type="text" class="form-control" placeholder="Find by name" ng-model="name" />
+            </div>
+            <div class="col-sm-4 pull-right">
+                <select class="form-control" id="sorter" ng-model="productCtrl.sort">
+                    <option selected disabled value="0">Sort by</option>
+                    <option value="price">Price (to lower)</option>
+                    <option value="-price">Price (to higher)</option>
+                    <option value="brand">Brand</option>
+                    <option value="category">Category</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="p in productCtrl.products | filter: name | orderBy: productCtrl.sort">
+                        <td><a href="#/card/{{p.id}}">{{ p.id }}</a></td>
+                        <td>{{ p.name }}</td>
+                        <td>{{ p.description }}</td>
+                        <td>{{ p.brand }}</td>
+                        <td>{{ p.category.name }}</td>
+                        <td>{{ p.price }}</td>
+                        <td>
+                            <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" ng-click="productCtrl.edit(p.id)"></span></button>
+                            <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" ng-click="productCtrl.delete(p)"></span></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>

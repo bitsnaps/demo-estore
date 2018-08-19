@@ -1,0 +1,10 @@
+<div class="owl-carousel" data-options="owlOptionsTestimonials">
+    <div owl-carousel-item="" ng-repeat="item in items" class="item">
+        <h4 class="text-center">{{ item.name }}</h4>
+        <img ng-src="{{item.imageUrl}}" alt="item.name" width="30px" />
+        <div class="text-center">
+            <ins><span>{{item.price * (100-item.discountRate)/100 | currency: '$': 2}}</span></ins>
+            <del><span>{{item.price | currency: '$': 2}}</span></del>
+        </div>
+    </div>
+</div>

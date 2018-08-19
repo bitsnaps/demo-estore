@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="page-header">
+        <h4>Product Card </h4>
+        <a ui-sref="listing()"><<- Back </a>
+    </div>
+    <div class="row" ng-hide="product">
+        <div class="alert alert-info">
+            <p>Product not found</p>
+        </div>
+    </div>
+    <div class="row" ng-show="product">
+
+        <div class="col-md-4">
+            <img ng-src="{{product.imageUrl}}" width="60%" height="60%" />
+        </div>
+
+        <div class="col-md-8">
+
+
+            <h1>Product #{{product.id}}</h1>
+
+            <p><b>Name</b>: {{ product.name }}</p>
+            <p><b>Description</b>: {{ product.description }}</p>
+            <p><b>Category</b>: {{ product.category.name }} (Cashback: {{ product.category.cashback }}%)</p>
+            <p><b>Quantity</b>: {{ product.quantity }}</p>
+            <p><b>Price</b>: {{ product.price | currency: '$': 2 }}</p>
+            <p><b>Discount</b>: {{ product.price * (100-product.discountRate)/100 | currency: '$': 2}}</p>
+            <p><b>Brand</b>: {{ product.brand }}</p>
+            <p><b>Store</b>: {{ product.store }}</p>
+
+        </div>
+    </div>
+
+</div>
+
